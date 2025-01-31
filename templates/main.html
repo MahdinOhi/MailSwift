@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailBluster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      body {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+      
+      .mailbluster-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      
+      .header-bar {
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        padding: 1.5rem;
+        color: white;
+        text-align: center;
+      }
+      
+      .header-bar h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      .form-content {
+        padding: 2rem;
+      }
+      
+      .form-section {
+        margin-bottom: 2rem;
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 1.5rem;
+        transition: transform 0.2s ease;
+      }
+      
+      .form-section:hover {
+        transform: translateY(-2px);
+      }
+      
+      .section-title {
+        color: #1e3a8a;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .section-title i {
+        font-size: 1.2rem;
+      }
+      
+      .input-field {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s ease;
+      }
+      
+      .input-field:focus {
+        border-color: #3b82f6;
+        outline: none;
+      }
+      
+      .template-editor {
+        width: 100%;
+        height: 250px;
+        padding: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      
+      .file-upload-box {
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: white;
+      }
+      
+      .file-upload-box:hover {
+        border-color: #3b82f6;
+        background: #f8fafc;
+      }
+      
+      .file-upload-box input[type='file'] {
+        display: none;
+      }
+      
+      .file-upload-label {
+        color: #64748b;
+        display: block;
+        margin-top: 0.5rem;
+      }
+      
+      .file-upload-label strong {
+        color: #3b82f6;
+        font-weight: 600;
+      }
+      
+      .send-button {
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      .send-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+      }
+      
+      .upload-hint {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        text-align: center;
+      }
+      
+      .file-preview {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mailbluster-container">
+      <div class="header-bar">
+        <h1>MailBluster</h1>
+        <p>Bulk Email Sender</p>
+      </div>
+
+      <div class="form-content">
+        <form method="POST" enctype="multipart/form-data">
+          <!-- Subject Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-envelope"></i>
+              Email Subject
+            </div>
+            <input type="text" class="input-field" name="subject" placeholder="Enter your email subject" required />
+          </div>
+
+          <!-- Template Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-file-code"></i>
+              Email Template
+            </div>
+            <textarea class="template-editor" name="template" placeholder="Write your template here using {{ variables }}..." required></textarea>
+          </div>
+
+          <!-- Recipients Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-users"></i>
+              Recipient List
+            </div>
+            <div class="file-upload-box">
+              <input type="file" name="csv_file" id="csv-upload" accept=".csv" required />
+              <label for="csv-upload" class="file-upload-label">
+                <i class="fas fa-file-csv fa-2x"></i><br />
+                <strong>Click to upload CSV</strong><br />
+                or drag and drop files here
+              </label>
+            </div>
+            <div class="upload-hint">Supports: CSV files only</div>
+          </div>
+
+          <!-- Attachments Section -->
+          <div class="form-section">
+            <div class="section-title">
+              <i class="fas fa-paperclip"></i>
+              Attachments
+            </div>
+            <div class="file-upload-box">
+              <input type="file" name="attachments" id="file-upload" multiple />
+              <label for="file-upload" class="file-upload-label">
+                <i class="fas fa-cloud-upload-alt fa-2x"></i><br />
+                <strong>Click to upload files</strong><br />
+                or drag and drop files here
+              </label>
+            </div>
+            <div class="upload-hint">Supports: All file types</div>
+          </div>
+
+          <!-- Send Button -->
+          <button type="submit" class="send-button">
+            <i class="fas fa-paper-plane"></i>
+            Send Emails
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

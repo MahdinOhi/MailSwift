@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailBlaster | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Markazi Text', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(210deg, #569b9b, #6aaf9f, #f4f8d3);
+        padding: 20px;
+      }
+      
+      .login-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+      }
+      
+      .login-card:hover {
+        transform: translateY(-5px);
+      }
+      
+      .card-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .card-header h1 {
+        color: #2d3436;
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+      
+      .card-header p {
+        color: #636e72;
+      }
+      
+      .input-group {
+        margin-bottom: 25px;
+        position: relative;
+      }
+      
+      .input-group input {
+        width: 100%;
+        padding: 15px 40px;
+        border: 2px solid #eee;
+        border-radius: 50px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      
+      .input-group input:focus {
+        border-color: #4ecdc4;
+        outline: none;
+      }
+      
+      .input-group i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #636e72;
+      }
+      
+      .options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      
+      .checkbox label {
+        color: #636e72;
+        cursor: pointer;
+      }
+      
+      .forgot-password a {
+        color: #4ecdc4;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .login-btn {
+        background: linear-gradient(45deg, #73c7c7, #a6f1e0);
+        color: white;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+      .login-btn:hover {
+        transform: scale(1.05);
+      }
+      
+      .social-login {
+        margin-top: 30px;
+        text-align: center;
+      }
+      
+      .social-login p {
+        color: #636e72;
+        margin-bottom: 15px;
+      }
+      
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+      
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+      
+      @media (max-width: 480px) {
+        .login-card {
+          padding: 30px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-card">
+      <div class="card-header">
+        <h1>Welcome to MailBlaster</h1>
+        <p>Please login to continue</p>
+      </div>
+
+      <form method="POST">
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" name="email" placeholder="Gmail Address" required />
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" placeholder="Gmail App Password" required />
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
