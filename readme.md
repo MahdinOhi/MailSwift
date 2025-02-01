@@ -1,4 +1,4 @@
-# MailBlaster: Advanced Bulk Email Sender Application
+# MailSwift: Advanced Bulk Email Sender Application
 
 ## 🚀 Project Overview
 

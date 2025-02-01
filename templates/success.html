@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailBlaster | Status</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f8ff;
+        font-family: Arial, sans-serif;
+      }
+      .card {
+        background-color: rgb(171, 220, 239);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 400px;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+      ul {
+        text-align: left;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Email Status</h2>
+      {% if success_list %}
+        <h3 class="success">Successfully Sent:</h3>
+        <ul>
+          {% for email in success_list %}
+            <li>✔ {{ email }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if error_list %}
+        <h3 class="error">Failed to Send:</h3>
+        <ul>
+          {% for email, error in error_list %}
+            <li>❌ {{ email }} - {{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <a href="{{ url_for('main') }}">Go Back</a>
+    </div>
+  </body>
+</html>
